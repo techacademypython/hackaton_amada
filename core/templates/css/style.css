@@ -1,0 +1,18 @@
+#map{
+    height: 700px;
+    width: 100%;
+}
+body{
+    margin-top: 3%;
+}
+
+h1{
+    font-size:2vw;
+}
+li{
+    margin-left: -15%;
+}
+
+#tables{
+    box-shadow: 5px 10px #888888;
+}

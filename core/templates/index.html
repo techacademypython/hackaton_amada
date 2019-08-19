@@ -1,0 +1,408 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {# <link rel="shortcut icon" href="{% static 'amada/images/thbox.ico' %}">#}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'amada/css/style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA1XW6XEL1Kc4fpoG-yP_etSsKrc_QNHn4'></script>
+
+        <title>Amada</title>
+    <style>
+        .orange{
+            background-color: orange;
+            color: orange;
+        }
+        .yellow{
+            background-color: yellow;
+            color: yellow;
+            /* yellow class has to be added */
+        }
+    </style>
+</head>
+<body>
+<section class="header " >
+     <div class=" logo col-12" >
+         <div class="images col-4">
+         <img src="/static/amada/images/home-cover.png" >
+         </div>
+         <div class="amada_hack col-6">
+         <h1 class=" log_style">Amada Hackathon</h1>
+         </div>
+     </div>
+</section>
+
+<section class="header " >
+     <div class="logo col-12" >
+         <h1 class="log_style">Chicken Barbeque Team</h1>
+
+     </div>
+</section>
+    <div class="container-fluid mt-5">
+        <div class="row mt-5">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 mt-5">
+
+                <h4 class="mt-5">Cihazlar</h4>
+                <div style="overflow-x:auto;">
+                    <table class="tables mt-3" id="tables">
+                        <tr>
+                            <th>No</th>
+                            <th>Ünvan</th>
+                            <th>Temperatur (C)</th>
+                            <th>Rütubət (%)</th>
+                            <th>Təziq (kPa)</th>
+                            <th>Sorğu
+                                vaxtı</th>
+
+                        </tr>
+                            {% for obj in info %}
+                            <tr>
+                                <td>{{ obj.text.0 }}</td>
+                                <td>{{ obj.text.1 }}</td>
+                                <td>{{ obj.text.2 }} C</td>
+                                 <td>{{ obj.text.3 }} %
+                                    <div class="progress" style="height: 7px;">
+                                        <div class="progress-bar {{ obj.battery }}" role="progressbar" style="width: {{ obj.text.3 }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>{{ obj.text.4 }} </td>
+                                <td>{{ obj.text.5 }} {{ obj.text.6 }}</td>
+
+                            </tr>
+                            {% endfor %}
+                    </table>
+                <br><br>
+                    <h4 class="mt-5">Bildirişlər</h4>
+
+             <table class="mt-3">
+                        <tr>
+                            <th>No</th>
+                            <th>Ünvan</th>
+                            <th>Bildiriş</th>
+                            <th>Tərəfindən</th>
+                            <th>Sorğu
+                                vaxtı</th>
+                        </tr>
+                            {% for obj in notf %}
+                            <tr>
+                                <td>{{ obj.notfication.0 }}</td>
+                                <td>{{ obj.notfication.1 }}</td>
+                                <td> {{ obj.not }}</td>
+                                <td>{{ obj.user }}</td>
+                                <td>{{ obj.notfication.2 }} {{ obj.notfication.3 }}</td>
+
+                            </tr>
+                            {% endfor %}
+                    </table>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                <div id="map"></div>
+            </div>
+        </div>
+        <section class="mt-5" id="team">
+         <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card text-center ">
+                        <div class="content">
+                            <div class="text">
+                                    <i class="fas fa-quote-left"></i>
+                                <p>
+Python Developer                                </p>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <div class="image">
+                                <img src="static/amada/images/photo_2019-08-18_15-27-30.jpg" class="img-responsive">
+                            </div>
+                            <div class="details">
+                                <h2>Elgiz Ibrahimli<br><span>Web Developer</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-center ">
+                        <div class="content">
+                            <div class="text">
+                                    <i class="fas fa-quote-left"></i>
+                                <p>
+MCU Developper                                </p>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <div class="image">
+                                <img src="static/amada/images/photo_2019-08-18_15-27-47.jpg" class="img-responsive">
+                            </div>
+                            <div class="details">
+                                <h2>Lale Muxtarova<br><span>MicroContreller Programmer</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card text-center ">
+                        <div class="content">
+                            <div class="text">
+                                    <i class="fas fa-quote-left"></i>
+                                <p>
+                                    MCU Developper                                </p>
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <div class="image">
+                                <img src="static/amada/images/IMG_9432.JPG" class="img-responsive">
+                            </div>
+                            <div class="details">
+                                <h2>Huseyn Qemberov<br><span>MicroContreller Programmer</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="break col-12 mt-2">
+
+                <div class="col-sm-4">
+                    <div class="card text-center ">
+                        <div class="content">
+                            <div class="text">
+                                    <i class="fas fa-quote-left"></i>
+                                <p>
+Electron                                </p>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <div class="image">
+                                <img src="static/amada/images/photo_2019-08-18_15-35-06.jpg" class="img-responsive">
+                            </div>
+                            <div class="details">
+                                <h2>Elsen Memmedov<br><span>Electronic  Engineer</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-center ">
+                        <div class="content">
+                            <div class="text">
+                                    <i class="fas fa-quote-left"></i>
+                                <p>
+Python Developer
+                                </p>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <div class="image">
+                                <img src="static/amada/images/15380285_1119297181471803_6070487467082869804_n.jpg" class="img-responsive">
+                            </div>
+                            <div class="details">
+                                <h2>Sebuhi Shukurov<br><span>Web Developer</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- just for testing -->
+
+    <script>
+         var position = [40.408537, 49.860729];
+         {#$.ajax({#}
+         {#       type: "GET",#}
+         {#       url: {% url "cordinates" %},#}
+         {#       dataType: "json",#}
+         {#       success: function(data){#}
+         {#           position = data.coordinates#}
+                    {#console.log("first")#}
+                    {#console.log(position)#}
+         {#       },#}
+         {#       error: function(err) {#}
+         {#           console.log(err);#}
+         {#       }#}
+         {##}
+         {#       });#}
+        var map = undefined;
+        var marker = undefined;
+
+
+        function initialize() {
+
+            var latlng = new google.maps.LatLng(position[0], position[1]);
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+            marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "Your current location!"
+            });
+
+            {#google.maps.event.addListener(map, 'mouseover', function(me) {#}
+            {#    var result = [me.latLng.lat(), me.latLng.lng()];#}
+            {#    transition(result);#}
+            {#});#}
+        }
+
+        initialize();
+
+        var numDeltas = 100;
+        var delay = 4; //milliseconds
+        var i = 0;
+        var deltaLat;
+        var deltaLng;
+
+        function transition(result){
+            i = 0;
+            console.log(position[0]);
+            {#console.log("fuck")#}
+            deltaLat = (result[0] - position[0])/numDeltas;
+
+            deltaLng = (result[1]- position[1])/numDeltas;
+            if (deltaLat === 0  || deltaLng === 0){
+                return ;
+            }
+
+            moveMarker();
+        }
+
+        function moveMarker(){
+            // alert(1)
+            position[0] += deltaLat;
+            position[1] += deltaLng;
+            var latlng = new google.maps.LatLng(position[0], position[1]);
+            marker.setPosition(latlng);
+            if(i!=numDeltas){
+                i++;
+                setTimeout(moveMarker, delay);
+            }
+        }
+            function getLocations() {
+            $.ajax({
+                type: "GET",
+                url: {% url "cordinates" %},
+                dataType: "json",
+                success: function(data){
+                    transition(data.coordinates)
+                    console.log(data.coordinates)
+                },
+                error: function(err){
+                    console.log(err);
+
+                }
+            });
+        }
+
+        setInterval(function(){ getLocations(); }, 4000);
+
+
+
+        {#function initMap(coordinates) {#}
+        {#    console.log(coordinates)#}
+        {#    var coordinates = coordinates[0].split(',')#}
+        {#    var map = new google.maps.Map(document.getElementById('map'), {#}
+        {#        zoom: 13,#}
+        {#        streetViewControl: false,#}
+        {#        mapTypeControl: false,#}
+        {#        mapTypeId: google.maps.MapTypeId.ROADMAP,#}
+        {#        center: {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])}#}
+        {#    });#}
+        {#    marker = new google.maps.Marker({#}
+        {##}
+        {#        map: map,#}
+        {#        draggable: true,#}
+        {#        animation: google.maps.Animation.DROP,#}
+        {#        position: {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])},#}
+        {#        // icon: {#}
+        {#        //     url: '/css/image/icon/map-marker-big.png',#}
+        {#        //     scaledSize: new google.maps.Size(41,50),#}
+        {#        //     origin: new google.maps.Point(0,0),#}
+        {#        //     anchor: new google.maps.Point(0,0)#}
+        {#        // },#}
+        {#    });#}
+        {#}#}
+
+
+
+
+
+        //     marker.addListener('mouseover', function () {
+
+
+
+
+    </script>
+{# <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA1XW6XEL1Kc4fpoG-yP_etSsKrc_QNHn4'></script>#}
+
+{# <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA1XW6XEL1Kc4fpoG-yP_etSsKrc_QNHn4'></script>#}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+      $('.toast').toast('show');
+    });
+</script>
+    <script>
+
+
+
+
+        // function PlotMarker(lat, lon) {
+        //     var marker = new google.maps.Marker({
+        //         position: new google.maps.LatLng(lat, lon),
+        //         map: gmap,
+        //         draggable: false,
+        //         animation: google.maps.Animation.DROP
+        //     });
+        //     markerLocations.push(marker);
+        // }
+        // getLocations()
+        // console.log("test")
+
+            </script>
+
+
+{#<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>#}
+{#<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>#}
+
+</body>
+
+
+</html>
+
